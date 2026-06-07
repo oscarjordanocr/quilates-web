@@ -469,13 +469,14 @@ a{color:inherit;text-decoration:none}
 // ── MOTOR DE PRECIO Y TC AUTOMÁTICOS ──
 const Q = (() => {
   const NUM='51989971554', MRG=0.13, CLAVE='quilates42';
-  const TROY=31.1035, DEF_SPOT=151.20, DEF_TC=3.75;
+  const TROY=31.1035, def_spot=96.500, DEF_TC=3.75;
   const REFRESH=5*60*1000; // 5 min
 
   let spot=DEF_SPOT, tc=DEF_TC, isAdmin=false, manualSpot=false;
 
   // Fuentes de precio del oro (oz → g)
   const GOLD=[
+    async()=>{const r=await fetch('/.netlify/functions/gold-price');const d=await r.json();if(d.price_24k)return d.price_24k;},
     async()=>{const r=await fetch('https://api.metals.live/v1/spot/gold',{signal:AbortSignal.timeout(5000)});const d=await r.json();if(d?.[0]?.gold)return d[0].gold/TROY;throw 0;},
     async()=>{const r=await fetch('https://api.frankfurter.app/latest?from=XAU&to=USD',{signal:AbortSignal.timeout(5000)});const d=await r.json();if(d?.rates?.USD)return d.rates.USD/TROY;throw 0;},
     async()=>{const r=await fetch('https://open.er-api.com/v6/latest/XAU',{signal:AbortSignal.timeout(5000)});const d=await r.json();if(d?.rates?.USD)return d.rates.USD/TROY;throw 0;},
