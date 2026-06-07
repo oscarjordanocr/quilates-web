@@ -607,5 +607,26 @@ const Q = (() => {
   return {admin,checkC,closeC,saveP,closeP,setLey,calc,openWA,openWADom};
 })();
 </script>
-</body>
+<script>
+(function () {
+  function fmt(n) { return '$' + n.toFixed(2); }
+  function actualizar(p24) {
+    var p18 = p24 * 0.75;
+    var venta = p18 * 1.05;
+    var compra = p18 * 0.82;
+    document.querySelectorAll('*').forEach(function(el) {
+      if (el.children.length === 0 && el.textContent) {
+        el.textContent = el.textContent
+          .replace(/\$151\.20/g, fmt(p24))
+          .replace(/\$113\.40/g, fmt(venta))
+          .replace(/\$98\.66/g, fmt(compra));
+      }
+    });
+  }
+  fetch('/.netlify/functions/gold-price')
+    .then(function(r) { return r.json(); })
+    .then(function(d) { if (d.price_24k) actualizar(d.price_24k); })
+    .catch(function(e) { console.warn('Precio no disponible', e); });
+})();
+</script></body>
 </html>
