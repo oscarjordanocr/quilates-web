@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Ofertas – Quilates Joyería</title>
+<meta name="description" content="Cadenas de plata y joyas en oferta. Stock disponible, envío a Lima. Quilates Joyería, San Isidro."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g1:#C4963A;--g2:#D4AA5A;--g3:#8C6B28;
+  --gb:rgba(196,150,58,.08);--gl:rgba(196,150,58,.2);
+  --k9:#0D0C0B;--k8:#141210;--k7:#1C1A17;
+  --k0:#F5F3EF;--fg:#0D0C0B;--fg2:#5A5650;--fg3:#8A8580;
+  --bg:#F5F3EF;--sur:#fff;--bdr:#E8E4DE;
+  --ff:'Inter',-apple-system,system-ui,sans-serif;
+  --sh1:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.04);
+  --sh2:0 6px 20px rgba(0,0,0,.09),0 2px 8px rgba(0,0,0,.05);
+  --tr:150ms ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff);font-size:15px;color:var(--fg);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+@media(max-width:600px){.wrap{padding:0 16px}}
+
+/* HEADER */
+.site-nav{background:var(--k9);position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(255,255,255,.05)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;max-width:1080px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-name{font-size:18px;font-weight:600;letter-spacing:-.01em;color:#fff;line-height:1}
+.brand-name span{color:var(--g1)}
+.brand-sep{width:1px;height:14px;background:rgba(255,255,255,.12)}
+.brand-desc{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:rgba(255,255,255,.45);letter-spacing:.05em;transition:color var(--tr)}
+.back-btn:hover{color:rgba(255,255,255,.8)}
+
+/* HERO STRIP */
+.page-hero{background:var(--k8);padding:clamp(32px,5vw,52px) 24px;border-bottom:1px solid rgba(255,255,255,.05)}
+.page-hero-in{max-width:1080px;margin:0 auto}
+.page-tag{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--g1);background:var(--gb);border:1px solid var(--gl);padding:4px 12px;border-radius:100px;margin-bottom:14px}
+.page-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--g1)}
+.page-h1{font-size:clamp(24px,5vw,36px);font-weight:700;line-height:1.15;color:#fff;letter-spacing:-.02em;margin-bottom:8px}
+.page-h1 em{font-style:normal;color:var(--g2)}
+.page-sub{font-size:14px;color:rgba(255,255,255,.38);max-width:480px;line-height:1.65}
+
+/* FILTER BAR */
+.filter-bar{padding:18px 0 4px;border-bottom:1px solid var(--bdr);margin-bottom:28px}
+.filter-bar-in{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.filter-btn{display:inline-flex;align-items:center;font-size:12px;font-weight:500;padding:6px 14px;border-radius:100px;border:1px solid var(--bdr);background:var(--sur);color:var(--fg2);cursor:pointer;transition:all var(--tr)}
+.filter-btn.on,.filter-btn:hover{background:var(--g1);border-color:var(--g1);color:#fff}
+.filter-count{font-size:10px;opacity:.6;margin-left:4px}
+
+/* PRODUCT GRID */
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;padding:8px 0 48px}
+@media(max-width:520px){.prod-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+
+.prod-card{background:var(--sur);border:1px solid var(--bdr);border-radius:16px;overflow:hidden;box-shadow:var(--sh1);transition:box-shadow var(--tr),transform var(--tr),border-color var(--tr);cursor:pointer}
+.prod-card:hover{box-shadow:var(--sh2);transform:translateY(-3px);border-color:var(--gl)}
+.prod-img{width:100%;aspect-ratio:1;object-fit:cover;background:var(--k0);position:relative;overflow:hidden}
+.prod-img-wrap{position:relative}
+.prod-badge{position:absolute;top:10px;left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:100px}
+.badge-oferta{background:#dc2626;color:#fff}
+.badge-ultimo{background:var(--g1);color:var(--k9)}
+.badge-nuevo{background:#2563eb;color:#fff}
+.prod-body{padding:14px}
+.prod-cat{font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3);margin-bottom:4px}
+.prod-name{font-size:14px;font-weight:600;color:var(--fg);line-height:1.3;margin-bottom:6px}
+.prod-desc{font-size:12px;color:var(--fg2);line-height:1.55;margin-bottom:12px}
+.prod-price-row{display:flex;align-items:flex-end;gap:8px;margin-bottom:12px}
+.prod-price{font-size:22px;font-weight:300;color:var(--g3);letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+.prod-price-orig{font-size:13px;color:var(--fg3);text-decoration:line-through;font-variant-numeric:tabular-nums;padding-bottom:2px}
+.prod-stock{font-size:10px;color:var(--fg3);background:var(--k0);border:1px solid var(--bdr);padding:2px 8px;border-radius:100px;display:inline-flex;align-items:center;gap:4px;margin-bottom:10px}
+.prod-stock::before{content:'';width:5px;height:5px;border-radius:50%;background:#4ade80}
+.prod-stock.low::before{background:#fbbf24}
+.prod-btn{width:100%;padding:10px;background:var(--g1);color:var(--k9);border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--ff);transition:opacity var(--tr),transform var(--tr);letter-spacing:.02em}
+.prod-btn:hover{opacity:.88;transform:translateY(-1px)}
+
+/* EMPTY STATE */
+.empty{text-align:center;padding:60px 24px;color:var(--fg3)}
+.empty-ico{font-size:36px;margin-bottom:12px}
+.empty-t{font-size:16px;font-weight:600;color:var(--fg);margin-bottom:6px}
+
+/* MODAL OVERLAY */
+.ovl{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);z-index:200;display:none;align-items:flex-start;justify-content:center;padding:20px 16px;overflow-y:auto}
+.ovl.on{display:flex}
+
+/* PRODUCT DETAIL MODAL */
+.detail-box{background:var(--sur);width:100%;max-width:560px;border-radius:20px;box-shadow:0 24px 80px rgba(0,0,0,.3);margin:auto;overflow:hidden;border-top:2px solid var(--g1)}
+.detail-img{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--k0)}
+.detail-body{padding:24px}
+.detail-cat{font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3);margin-bottom:6px}
+.detail-name{font-size:22px;font-weight:700;color:var(--fg);letter-spacing:-.01em;margin-bottom:8px}
+.detail-desc{font-size:14px;color:var(--fg2);line-height:1.7;margin-bottom:16px}
+.detail-specs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.spec-cell{background:var(--k0);border:1px solid var(--bdr);border-radius:10px;padding:10px 12px}
+.spec-l{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--fg3);margin-bottom:3px}
+.spec-v{font-size:13px;font-weight:500;color:var(--fg)}
+.detail-price-row{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:16px;background:var(--gb);border:1px solid var(--gl);border-radius:12px}
+.detail-price{font-size:32px;font-weight:300;color:var(--g3);letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.detail-price-orig{font-size:14px;color:var(--fg3);text-decoration:line-through;font-variant-numeric:tabular-nums}
+.detail-price-pct{font-size:11px;font-weight:700;color:#dc2626;background:#fef2f2;padding:2px 8px;border-radius:100px}
+.detail-btns{display:flex;gap:8px}
+.btn-comprar{flex:1;padding:13px;background:var(--g1);color:var(--k9);border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--ff);transition:opacity var(--tr);letter-spacing:.02em}
+.btn-comprar:hover{opacity:.88}
+.btn-close-detail{padding:13px 16px;background:var(--k0);color:var(--fg2);border:1px solid var(--bdr);border-radius:12px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--ff);transition:background var(--tr)}
+.btn-close-detail:hover{background:var(--bdr)}
+
+/* ORDER FORM MODAL */
+.order-box{background:var(--sur);width:100%;max-width:480px;border-radius:20px;box-shadow:0 24px 80px rgba(0,0,0,.3);margin:auto;overflow:hidden;border-top:2px solid var(--g1)}
+.order-head{padding:24px 24px 0}
+.order-product-strip{display:flex;align-items:center;gap:12px;padding:12px;background:var(--k0);border:1px solid var(--bdr);border-radius:12px;margin-bottom:20px}
+.order-product-img{width:52px;height:52px;border-radius:8px;object-fit:cover;background:var(--gb);flex-shrink:0}
+.order-product-name{font-size:13px;font-weight:600;color:var(--fg);line-height:1.3}
+.order-product-price{font-size:18px;font-weight:300;color:var(--g3);letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1;margin-top:3px}
+.order-title{font-size:20px;font-weight:600;color:var(--fg);letter-spacing:-.01em;margin-bottom:4px}
+.order-sub{font-size:12px;color:var(--fg3);margin-bottom:20px;line-height:1.5}
+.order-body{padding:0 24px 24px}
+.form-field{margin-bottom:16px}
+.form-field label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--fg3);display:block;margin-bottom:6px}
+.form-field input,.form-field select,.form-field textarea{width:100%;background:var(--k0);border:none;border-bottom:1.5px solid var(--bdr);padding:8px 0;color:var(--fg);font-size:15px;font-family:var(--ff);font-weight:400;outline:none;border-radius:0;transition:border-color var(--tr);resize:none}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-bottom-color:var(--g1)}
+.form-field select{-webkit-appearance:none;cursor:pointer}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.qty-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1.5px solid var(--bdr);margin-bottom:16px}
+.qty-label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--fg3);flex:1}
+.qty-ctrl{display:flex;align-items:center;gap:10px}
+.qty-btn{width:30px;height:30px;border-radius:8px;background:var(--k0);border:1px solid var(--bdr);cursor:pointer;font-size:16px;font-weight:300;color:var(--fg);display:flex;align-items:center;justify-content:center;transition:background var(--tr)}
+.qty-btn:hover{background:var(--gb);border-color:var(--gl);color:var(--g1)}
+.qty-num{font-size:18px;font-weight:300;color:var(--fg);min-width:24px;text-align:center;font-variant-numeric:tabular-nums}
+.order-total{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--gb);border:1px solid var(--gl);border-radius:12px;margin-bottom:20px}
+.order-total-lbl{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--g3)}
+.order-total-val{font-size:26px;font-weight:300;color:var(--g3);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.order-submit{width:100%;padding:14px;background:var(--g1);color:var(--k9);border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--ff);transition:opacity var(--tr),transform var(--tr);letter-spacing:.03em}
+.order-submit:hover{opacity:.88;transform:translateY(-1px)}
+.order-submit:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.order-cancel{width:100%;padding:10px;background:none;border:none;color:var(--fg3);font-size:13px;cursor:pointer;font-family:var(--ff);margin-top:8px;transition:color var(--tr)}
+.order-cancel:hover{color:var(--fg)}
+.ferr{font-size:11px;color:#dc2626;margin-bottom:10px;display:none}
+
+/* SUCCESS SCREEN */
+.success-box{background:var(--sur);width:100%;max-width:400px;border-radius:20px;padding:40px 32px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.3);margin:auto;border-top:2px solid #4ade80}
+.success-ico{font-size:48px;margin-bottom:16px}
+.success-t{font-size:22px;font-weight:700;color:var(--fg);letter-spacing:-.01em;margin-bottom:8px}
+.success-sub{font-size:14px;color:var(--fg2);line-height:1.65;margin-bottom:24px}
+.success-ref{font-size:12px;color:var(--fg3);background:var(--k0);border:1px solid var(--bdr);padding:8px 16px;border-radius:8px;display:inline-block;margin-bottom:24px;font-variant-numeric:tabular-nums}
+.success-close{padding:12px 32px;background:var(--g1);color:var(--k9);border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--ff)}
+
+/* WA FAB */
+.wa-fab{position:fixed;bottom:24px;right:24px;z-index:990;width:52px;height:52px;border-radius:50%;background:#25D366;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);text-decoration:none;transition:transform var(--tr),box-shadow var(--tr)}
+.wa-fab:hover{transform:scale(1.1)}
+.wa-fab svg{width:25px;height:25px;fill:#fff}
+</style>
+</head>
+<body>
+
+<a class="wa-fab" href="https://wa.me/51989971554?text=Hola%20Quilates%2C%20vi%20las%20ofertas%20y%20tengo%20una%20consulta" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- HEADER -->
+<header class="site-nav">
+  <div class="nav-in">
+    <div class="brand">
+      <a href="index.html" class="brand-name">Quil<span>ates</span></a>
+      <span class="brand-sep"></span>
+      <span class="brand-desc">Joyería · San Isidro</span>
+    </div>
+    <a href="index.html" class="back-btn">← Volver al inicio</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-in">
+    <div class="page-tag">Ofertas especiales</div>
+    <h1 class="page-h1">Stock disponible<br/><em>a precios únicos</em></h1>
+    <p class="page-sub">Piezas seleccionadas con descuento. Stock limitado. Envío a Lima y coordinación de recojo en tienda.</p>
+  </div>
+</div>
+
+<!-- CATALOG -->
+<section style="padding:28px 0">
+  <div class="wrap">
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <div class="filter-bar-in">
+        <button class="filter-btn on" onclick="filterCat('todos',this)">Todo <span class="filter-count" id="count-todos"></span></button>
+        <button class="filter-btn" onclick="filterCat('plata',this)">Plata <span class="filter-count" id="count-plata"></span></button>
+        <button class="filter-btn" onclick="filterCat('oro',this)">Oro <span class="filter-count" id="count-oro"></span></button>
+        <button class="filter-btn" onclick="filterCat('oferta',this)">Solo ofertas <span class="filter-count" id="count-oferta"></span></button>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="prod-grid" id="prod-grid"></div>
+  </div>
+</section>
+
+<!-- ── MODAL: DETALLE ── -->
+<div class="ovl" id="ov-detail">
+  <div class="detail-box" id="detail-box"></div>
+</div>
+
+<!-- ── MODAL: ORDEN ── -->
+<div class="ovl" id="ov-order">
+  <div class="order-box" id="order-box"></div>
+</div>
+
+<!-- ── MODAL: ÉXITO ── -->
+<div class="ovl" id="ov-success">
+  <div class="success-box">
+    <div class="success-ico">✅</div>
+    <div class="success-t">¡Pedido recibido!</div>
+    <div class="success-sub">Te contactaremos en menos de 24 horas para confirmar tu pedido y coordinar el envío o recojo.</div>
+    <div class="success-ref" id="success-ref"></div>
+    <button class="success-close" onclick="closeAll()">Listo</button>
+  </div>
+</div>
+
+<script>
+// ── CONFIGURACIÓN EMAILJS ──
+// Pasos para activar: ve a emailjs.com, crea cuenta gratis,
+// crea un Service con tu Gmail, crea un Template y reemplaza
+// los 3 valores de abajo con los tuyos.
+const EMAILJS_PUBLIC_KEY  = 'TU_PUBLIC_KEY';   // Account → API Keys
+const EMAILJS_SERVICE_ID  = 'TU_SERVICE_ID';   // Email Services
+const EMAILJS_TEMPLATE_ID = 'TU_TEMPLATE_ID';  // Email Templates
+
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+const NUM = '51989971554';
+
+// ── CATÁLOGO DE PRODUCTOS ──
+// Para agregar un producto: copia un bloque {…} y edita los valores.
+// Para usar foto real: pon la URL de la imagen en "img".
+// stock: número de unidades disponibles.
+const PRODUCTS = [
+  {
+    id: 'cad-plata-01',
+    cat: 'plata',
+    name: 'Cadena Veneciana Plata 925',
+    desc: 'Cadena tejido veneciano en plata sterling 925. Cierre mosquetón. Ideal para dije o sola.',
+    specs: { Material: 'Plata 925', Largo: '45 cm', Grosor: '2 mm', Cierre: 'Mosquetón' },
+    price: 55,
+    priceOrig: 80,
+    stock: 8,
+    badge: 'oferta',
+    img: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=600&q=80',
+  },
+  {
+    id: 'cad-plata-02',
+    cat: 'plata',
+    name: 'Cadena Figaro Plata 925',
+    desc: 'Diseño clásico Figaro con eslabones intercalados. Acabado pulido brillante.',
+    specs: { Material: 'Plata 925', Largo: '50 cm', Grosor: '3 mm', Cierre: 'Langosta' },
+    price: 65,
+    priceOrig: null,
+    stock: 5,
+    badge: 'nuevo',
+    img: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80',
+  },
+  {
+    id: 'cad-plata-03',
+    cat: 'plata',
+    name: 'Cadena Rolo Plata 925',
+    desc: 'Eslabones circulares uniformes, resistente y versátil. Perfecta para uso diario.',
+    specs: { Material: 'Plata 925', Largo: '40 cm', Grosor: '4 mm', Cierre: 'Mosquetón' },
+    price: 70,
+    priceOrig: 95,
+    stock: 3,
+    badge: 'ultimo',
+    img: 'https://images.unsplash.com/photo-1630344516208-44b2e42a3b45?w=600&q=80',
+  },
+  {
+    id: 'cad-plata-04',
+    cat: 'plata',
+    name: 'Cadena Box Chain Plata 925',
+    desc: 'Tejido caja cuadrada, muy popular. Resistente y de bello acabado satinado.',
+    specs: { Material: 'Plata 925', Largo: '45 cm', Grosor: '2.5 mm', Cierre: 'Langosta' },
+    price: 60,
+    priceOrig: 78,
+    stock: 6,
+    badge: 'oferta',
+    img: 'https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=600&q=80',
+  },
+];
+
+let currentProduct = null;
+let orderQty = 1;
+let currentCat = 'todos';
+
+// ── RENDER GRID ──
+function renderGrid(cat) {
+  currentCat = cat;
+  const grid = document.getElementById('prod-grid');
+  const filtered = cat === 'todos' ? PRODUCTS
+    : cat === 'oferta' ? PRODUCTS.filter(p => p.badge === 'oferta')
+    : PRODUCTS.filter(p => p.cat === cat);
+
+  // Update counts
+  document.getElementById('count-todos').textContent = PRODUCTS.length;
+  document.getElementById('count-plata').textContent = PRODUCTS.filter(p=>p.cat==='plata').length;
+  document.getElementById('count-oro').textContent = PRODUCTS.filter(p=>p.cat==='oro').length;
+  document.getElementById('count-oferta').textContent = PRODUCTS.filter(p=>p.badge==='oferta').length;
+
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><div class="empty-ico">🔍</div><div class="empty-t">No hay productos en esta categoría</div><p>Pronto agregaremos más stock.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => {
+    const badgeMap = { oferta:'badge-oferta', ultimo:'badge-ultimo', nuevo:'badge-nuevo' };
+    const badgeTxt = { oferta:'Oferta', ultimo:'Último stock', nuevo:'Nuevo' };
+    const pct = p.priceOrig ? Math.round((1 - p.price/p.priceOrig)*100) : null;
+    const stockClass = p.stock <= 3 ? 'low' : '';
+    return `
+    <div class="prod-card" onclick="openDetail('${p.id}')">
+      <div class="prod-img-wrap">
+        <img class="prod-img" src="${p.img}" alt="${p.name}" loading="lazy"/>
+        ${p.badge ? `<span class="prod-badge ${badgeMap[p.badge]}">${badgeTxt[p.badge]}</span>` : ''}
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">${p.cat === 'plata' ? 'Plata' : 'Oro'}</div>
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-desc">${p.desc.substring(0,70)}…</div>
+        <div class="prod-price-row">
+          <span class="prod-price">S/ ${p.price}</span>
+          ${p.priceOrig ? `<span class="prod-price-orig">S/ ${p.priceOrig}</span>` : ''}
+          ${pct ? `<span style="font-size:10px;font-weight:700;color:#dc2626">-${pct}%</span>` : ''}
+        </div>
+        <div class="prod-stock ${stockClass}">${p.stock} disponibles</div>
+        <button class="prod-btn" onclick="event.stopPropagation();openDetail('${p.id}')">Ver y comprar</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── FILTER ──
+function filterCat(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderGrid(cat);
+}
+
+// ── DETAIL MODAL ──
+function openDetail(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  currentProduct = p;
+  const pct = p.priceOrig ? Math.round((1 - p.price/p.priceOrig)*100) : null;
+  const specsHtml = Object.entries(p.specs).map(([k,v]) => `<div class="spec-cell"><div class="spec-l">${k}</div><div class="spec-v">${v}</div></div>`).join('');
+
+  document.getElementById('detail-box').innerHTML = `
+    <img class="detail-img" src="${p.img}" alt="${p.name}"/>
+    <div class="detail-body">
+      <div class="detail-cat">${p.cat === 'plata' ? '✦ Plata 925' : '✦ Oro'}</div>
+      <div class="detail-name">${p.name}</div>
+      <div class="detail-desc">${p.desc}</div>
+      <div class="detail-specs">${specsHtml}</div>
+      <div class="detail-price-row">
+        <div>
+          <div class="detail-price">S/ ${p.price}</div>
+          ${p.priceOrig ? `<div class="detail-price-orig">Antes: S/ ${p.priceOrig}</div>` : ''}
+        </div>
+        ${pct ? `<span class="detail-price-pct">−${pct}% OFF</span>` : ''}
+      </div>
+      <div style="font-size:11px;color:var(--fg3);margin-bottom:16px">Stock disponible: <strong>${p.stock} unidades</strong></div>
+      <div class="detail-btns">
+        <button class="btn-close-detail" onclick="closeDetail()">Cerrar</button>
+        <button class="btn-comprar" onclick="openOrder()">Comprar ahora →</button>
+      </div>
+    </div>`;
+  document.getElementById('ov-detail').classList.add('on');
+}
+function closeDetail() { document.getElementById('ov-detail').classList.remove('on'); }
+
+// ── ORDER MODAL ──
+function openOrder() {
+  const p = currentProduct;
+  orderQty = 1;
+  closeDetail();
+
+  document.getElementById('order-box').innerHTML = `
+    <div class="order-head">
+      <div class="order-title">Confirmar pedido</div>
+      <div class="order-sub">Llena tus datos y nos ponemos en contacto en menos de 24 horas.</div>
+      <div class="order-product-strip">
+        <img class="order-product-img" src="${p.img}" alt="${p.name}"/>
+        <div>
+          <div class="order-product-name">${p.name}</div>
+          <div class="order-product-price" id="strip-price">S/ ${p.price}</div>
+        </div>
+      </div>
+    </div>
+    <div class="order-body">
+      <div class="qty-row">
+        <span class="qty-label">Cantidad</span>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <span class="qty-num" id="qty-display">1</span>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+      </div>
+      <div class="form-field"><label>Nombre completo *</label><input type="text" id="o-nombre" placeholder="Ej: Ana García"/></div>
+      <div class="form-row">
+        <div class="form-field"><label>Teléfono / WhatsApp *</label><input type="tel" id="o-tel" placeholder="+51 9XX XXX XXX"/></div>
+        <div class="form-field"><label>Correo electrónico *</label><input type="email" id="o-email" placeholder="tu@correo.com"/></div>
+      </div>
+      <div class="form-field">
+        <label>Entrega</label>
+        <select id="o-entrega">
+          <option value="envio">Envío a domicilio (Lima)</option>
+          <option value="tienda">Recojo en tienda – San Isidro</option>
+        </select>
+      </div>
+      <div class="form-field" id="dir-field">
+        <label>Dirección de envío *</label>
+        <input type="text" id="o-dir" placeholder="Av. ejemplo 123, Miraflores"/>
+      </div>
+      <div class="form-field">
+        <label>Nota adicional</label>
+        <textarea id="o-nota" rows="2" placeholder="Cualquier detalle adicional…"></textarea>
+      </div>
+      <div class="ferr" id="o-err">Por favor completa todos los campos obligatorios.</div>
+      <div class="order-total">
+        <span class="order-total-lbl">Total</span>
+        <span class="order-total-val" id="order-total-val">S/ ${p.price}</span>
+      </div>
+      <button class="order-submit" id="o-submit" onclick="submitOrder()">Confirmar pedido →</button>
+      <button class="order-cancel" onclick="closeOrder()">Cancelar</button>
+    </div>`;
+
+  // Toggle dirección según entrega
+  document.getElementById('o-entrega').addEventListener('change', function() {
+    document.getElementById('dir-field').style.display = this.value === 'tienda' ? 'none' : '';
+  });
+
+  document.getElementById('ov-order').classList.add('on');
+}
+function closeOrder() { document.getElementById('ov-order').classList.remove('on'); }
+
+function changeQty(delta) {
+  const p = currentProduct;
+  orderQty = Math.max(1, Math.min(p.stock, orderQty + delta));
+  document.getElementById('qty-display').textContent = orderQty;
+  document.getElementById('strip-price').textContent = `S/ ${p.price * orderQty}`;
+  document.getElementById('order-total-val').textContent = `S/ ${p.price * orderQty}`;
+}
+
+// ── SUBMIT ──
+async function submitOrder() {
+  const p = currentProduct;
+  const nombre = document.getElementById('o-nombre')?.value.trim();
+  const tel    = document.getElementById('o-tel')?.value.trim();
+  const email  = document.getElementById('o-email')?.value.trim();
+  const entrega = document.getElementById('o-entrega')?.value;
+  const dir    = document.getElementById('o-dir')?.value.trim();
+  const nota   = document.getElementById('o-nota')?.value.trim();
+  const err    = document.getElementById('o-err');
+  const btn    = document.getElementById('o-submit');
+
+  if (!nombre || !tel || !email || (entrega === 'envio' && !dir)) {
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+
+  const ref = 'QUI-' + Date.now().toString(36).toUpperCase();
+  const total = `S/ ${p.price * orderQty}`;
+  const fechaHora = new Date().toLocaleString('es-PE', { timeZone: 'America/Lima' });
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando…';
+
+  const params = {
+    to_email:      'intelligencecorp42@gmail.com',
+    ref:           ref,
+    producto:      p.name,
+    cantidad:      orderQty,
+    precio_unit:   `S/ ${p.price}`,
+    total:         total,
+    cliente_nombre: nombre,
+    cliente_tel:   tel,
+    cliente_email: email,
+    entrega:       entrega === 'envio' ? 'Envío a domicilio' : 'Recojo en tienda',
+    direccion:     dir || '(recojo en tienda)',
+    nota:          nota || '—',
+    fecha:         fechaHora,
+  };
+
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+    closeOrder();
+    document.getElementById('success-ref').textContent = `Referencia: ${ref}`;
+    document.getElementById('ov-success').classList.add('on');
+  } catch(e) {
+    // Si EmailJS no está configurado aún, igual muestra éxito y abre WhatsApp
+    closeOrder();
+    const msg = encodeURIComponent(`🛍 Nuevo pedido Quilates\n\nProducto: ${p.name}\nCantidad: ${orderQty}\nTotal: ${total}\nCliente: ${nombre}\nTel: ${tel}\nEmail: ${email}\nEntrega: ${entrega === 'envio' ? 'Envío – '+dir : 'Tienda'}\nNota: ${nota||'—'}\nRef: ${ref}`);
+    window.open(`https://wa.me/${NUM}?text=${msg}`, '_blank');
+    document.getElementById('success-ref').textContent = `Referencia: ${ref}`;
+    document.getElementById('ov-success').classList.add('on');
+  }
+}
+
+function closeAll() {
+  ['ov-detail','ov-order','ov-success'].forEach(id => document.getElementById(id)?.classList.remove('on'));
+}
+
+// Cerrar con Escape
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+
+// Init
+renderGrid('todos');
+</script>
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Invierte en Ti – Joyería a Medida | Quilates</title>
+<meta name="description" content="Fabrica tu joya a medida en Quilates. Anillos, cadenas, aretes, pulseras en oro y plata. Diseño personalizado, San Isidro Lima."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g1:#C4963A;--g2:#D4AA5A;--g3:#8C6B28;
+  --gb:rgba(196,150,58,.08);--gl:rgba(196,150,58,.2);
+  --k9:#0D0C0B;--k8:#141210;--k7:#1C1A17;
+  --k0:#F5F3EF;--fg:#0D0C0B;--fg2:#5A5650;--fg3:#8A8580;
+  --bg:#F5F3EF;--sur:#fff;--bdr:#E8E4DE;
+  --ff:'Inter',-apple-system,system-ui,sans-serif;
+  --sh1:0 1px 3px rgba(0,0,0,.05),0 1px 2px rgba(0,0,0,.04);
+  --sh2:0 6px 20px rgba(0,0,0,.09),0 2px 8px rgba(0,0,0,.05);
+  --tr:150ms ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff);font-size:15px;color:var(--fg);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+@media(max-width:600px){.wrap{padding:0 16px}}
+
+/* HEADER */
+.site-nav{background:var(--k9);position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(255,255,255,.05)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;max-width:1080px;margin:0 auto}
+.brand-name{font-size:18px;font-weight:600;letter-spacing:-.01em;color:#fff;line-height:1}
+.brand-name span{color:var(--g1)}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:rgba(255,255,255,.45);letter-spacing:.05em;transition:color var(--tr)}
+.back-btn:hover{color:rgba(255,255,255,.8)}
+
+/* HERO */
+.hero{background:var(--k8);border-bottom:1px solid rgba(255,255,255,.05);padding:clamp(48px,8vw,80px) 24px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 70% 50%,rgba(196,150,58,.06),transparent);pointer-events:none}
+.hero-in{max-width:1080px;margin:0 auto;position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--g1);background:var(--gb);border:1px solid var(--gl);padding:4px 12px;border-radius:100px;margin-bottom:16px}
+.hero-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--g1)}
+.hero-h1{font-size:clamp(28px,5.5vw,52px);font-weight:700;line-height:1.1;color:#fff;letter-spacing:-.02em;margin-bottom:16px;max-width:620px}
+.hero-h1 em{font-style:normal;color:var(--g2)}
+.hero-sub{font-size:clamp(14px,2vw,16px);color:rgba(255,255,255,.38);max-width:500px;line-height:1.75;margin-bottom:32px}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.btn-cta-gold{display:inline-flex;align-items:center;gap:8px;background:var(--g1);color:var(--k9);font-size:14px;font-weight:600;padding:13px 22px;border-radius:12px;border:none;cursor:pointer;text-decoration:none;font-family:var(--ff);transition:opacity var(--tr),transform var(--tr)}
+.btn-cta-gold:hover{opacity:.88;transform:translateY(-1px)}
+.btn-cta-wa{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;font-size:14px;font-weight:600;padding:13px 22px;border-radius:12px;text-decoration:none;transition:opacity var(--tr),transform var(--tr)}
+.btn-cta-wa:hover{opacity:.9;transform:translateY(-1px)}
+.btn-cta-wa svg{width:18px;height:18px;fill:#fff;flex-shrink:0}
+
+/* PROCESO */
+.sec{padding:clamp(40px,6vw,64px) 0}
+.sh{display:flex;align-items:center;gap:16px;margin-bottom:8px}
+.sh-t{font-size:19px;font-weight:600;color:var(--fg);letter-spacing:-.01em;white-space:nowrap}
+.sh-r{flex:1;height:1px;background:var(--bdr)}
+.sh-sub{font-size:14px;color:var(--fg2);margin-bottom:32px;max-width:520px;line-height:1.65}
+
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.proc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.proc-grid{grid-template-columns:1fr}}
+.proc-card{background:var(--sur);border:1px solid var(--bdr);border-radius:14px;padding:20px;box-shadow:var(--sh1);transition:box-shadow var(--tr),transform var(--tr),border-color var(--tr)}
+.proc-card:hover{box-shadow:var(--sh2);transform:translateY(-2px);border-color:var(--gl)}
+.proc-n{width:32px;height:32px;border-radius:8px;background:var(--gb);border:1px solid var(--gl);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--g1);flex-shrink:0;margin-bottom:12px}
+.proc-t{font-size:14px;font-weight:600;color:var(--fg);margin-bottom:4px}
+.proc-d{font-size:12px;color:var(--fg2);line-height:1.6}
+
+/* TIPOS DE JOYA */
+.tipos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:620px){.tipos-grid{grid-template-columns:repeat(2,1fr)}}
+.tipo-card{background:var(--k8);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:20px 16px;text-align:center;transition:border-color var(--tr),transform var(--tr)}
+.tipo-card:hover{border-color:var(--gl);transform:translateY(-2px)}
+.tipo-ico{font-size:28px;margin-bottom:8px;line-height:1}
+.tipo-name{font-size:13px;font-weight:600;color:#fff;margin-bottom:4px}
+.tipo-desc{font-size:11px;color:rgba(255,255,255,.3);line-height:1.55}
+
+/* MATERIALES */
+.mat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:500px){.mat-grid{grid-template-columns:1fr}}
+.mat-card{background:var(--sur);border:1px solid var(--bdr);border-radius:14px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;box-shadow:var(--sh1)}
+.mat-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.mat-t{font-size:14px;font-weight:600;color:var(--fg);margin-bottom:3px}
+.mat-d{font-size:12px;color:var(--fg2);line-height:1.55}
+
+/* COTIZADOR FORM */
+.quote-card{background:var(--sur);border:1px solid var(--bdr);border-radius:20px;padding:clamp(24px,4vw,36px);box-shadow:var(--sh2);border-top:2px solid var(--g1)}
+.form-section{margin-bottom:24px}
+.form-section-title{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--bdr)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:500px){.form-grid{grid-template-columns:1fr}}
+.form-field{margin-bottom:0}
+.form-field label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--fg3);display:block;margin-bottom:6px}
+.form-field input,.form-field select,.form-field textarea{width:100%;background:var(--k0);border:none;border-bottom:1.5px solid var(--bdr);padding:8px 0;color:var(--fg);font-size:15px;font-family:var(--ff);font-weight:400;outline:none;border-radius:0;transition:border-color var(--tr);resize:none}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-bottom-color:var(--g1)}
+.form-field select{-webkit-appearance:none;cursor:pointer}
+.form-field.full{grid-column:1/-1}
+.form-note{font-size:11px;color:var(--fg3);line-height:1.6;padding:10px 14px;background:var(--gb);border:1px solid var(--gl);border-radius:8px;margin-bottom:20px}
+.ferr{font-size:11px;color:#dc2626;margin-bottom:12px;display:none}
+
+/* BOTONES FORM */
+.form-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-submit-gold{flex:1;min-width:200px;padding:14px;background:var(--g1);color:var(--k9);border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--ff);transition:opacity var(--tr),transform var(--tr);letter-spacing:.02em}
+.btn-submit-gold:hover{opacity:.88;transform:translateY(-1px)}
+.btn-submit-gold:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn-submit-wa{display:inline-flex;align-items:center;gap:8px;justify-content:center;flex:1;min-width:180px;padding:14px;background:#25D366;color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--ff);text-decoration:none;transition:opacity var(--tr)}
+.btn-submit-wa:hover{opacity:.88}
+.btn-submit-wa svg{width:18px;height:18px;fill:#fff;flex-shrink:0}
+
+/* SUCCESS */
+.success-banner{display:none;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:14px;padding:20px 24px;text-align:center;margin-top:16px}
+.success-banner.on{display:block}
+.success-banner-ico{font-size:32px;margin-bottom:8px}
+.success-banner-t{font-size:16px;font-weight:600;color:var(--fg);margin-bottom:4px}
+.success-banner-sub{font-size:13px;color:var(--fg2);line-height:1.6}
+
+/* WA FAB */
+.wa-fab{position:fixed;bottom:24px;right:24px;z-index:990;width:52px;height:52px;border-radius:50%;background:#25D366;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);text-decoration:none;transition:transform var(--tr)}
+.wa-fab:hover{transform:scale(1.1)}
+.wa-fab svg{width:25px;height:25px;fill:#fff}
+
+/* GARANTIA STRIP */
+.garantia{background:var(--k9);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
+.garantia-in{display:grid;grid-template-columns:repeat(3,1fr);max-width:1080px;margin:0 auto;padding:0 24px}
+@media(max-width:580px){.garantia-in{grid-template-columns:1fr}}
+.g-cell{padding:22px 16px;text-align:center;border-right:1px solid rgba(255,255,255,.06)}
+.g-cell:last-child{border-right:none}
+@media(max-width:580px){.g-cell{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}.g-cell:last-child{border-bottom:none}}
+.g-ico{font-size:22px;margin-bottom:6px}
+.g-t{font-size:13px;font-weight:600;color:#fff;margin-bottom:2px}
+.g-s{font-size:11px;color:rgba(255,255,255,.3)}
+
+/* SLOGAN */
+.slogan{background:var(--k9);padding:clamp(40px,6vw,64px) 24px;text-align:center}
+.slogan-t{font-size:clamp(18px,3.5vw,26px);font-weight:300;line-height:1.45;color:rgba(255,255,255,.45);max-width:400px;margin:0 auto;letter-spacing:-.01em}
+.slogan-t strong{color:var(--g2);font-weight:400}
+.slogan-meta{font-size:10px;color:rgba(255,255,255,.18);letter-spacing:.2em;text-transform:uppercase;margin-top:24px}
+
+/* FOOTER */
+.site-footer{background:var(--k9);padding:20px 0;border-top:1px solid rgba(255,255,255,.05)}
+.footer-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.footer-brand{font-size:14px;font-weight:600;color:rgba(255,255,255,.22)}
+.footer-brand span{color:var(--g1)}
+.footer-info{font-size:11px;color:rgba(255,255,255,.14);letter-spacing:.04em}
+</style>
+</head>
+<body>
+
+<a class="wa-fab" id="wa-fab-main" href="https://wa.me/51989971554?text=Hola%20Quilates%2C%20quiero%20cotizar%20una%20joya%20personalizada" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- HEADER -->
+<header class="site-nav">
+  <div class="nav-in">
+    <a href="index.html" class="brand-name">Quil<span>ates</span></a>
+    <a href="index.html" class="back-btn">← Volver al inicio</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-in">
+    <div class="hero-tag">Fabricación a medida</div>
+    <h1 class="hero-h1">La joya que imaginas,<br/><em>hecha para ti</em></h1>
+    <p class="hero-sub">Diseñamos y fabricamos joyas personalizadas en oro y plata. Desde el boceto hasta la pieza final, con materiales certificados y acabado artesanal.</p>
+    <div class="hero-ctas">
+      <button class="btn-cta-gold" onclick="document.getElementById('cotizador').scrollIntoView({behavior:'smooth'})">Cotizar mi joya →</button>
+      <a class="btn-cta-wa" href="https://wa.me/51989971554?text=Hola%20Quilates%2C%20quiero%20cotizar%20una%20joya%20a%20medida" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Consultar por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTÍA STRIP -->
+<div class="garantia">
+  <div class="garantia-in">
+    <div class="g-cell"><div class="g-ico">🏆</div><div class="g-t">Materiales certificados</div><div class="g-s">Oro y plata de origen verificado</div></div>
+    <div class="g-cell"><div class="g-ico">✏️</div><div class="g-t">Diseño personalizado</div><div class="g-s">Tu idea hecha realidad desde cero</div></div>
+    <div class="g-cell"><div class="g-ico">⚡</div><div class="g-t">Entrega en Lima</div><div class="g-s">Coordinamos envío o recojo en tienda</div></div>
+  </div>
+</div>
+
+<!-- PROCESO -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sh"><h2 class="sh-t">¿Cómo funciona?</h2><div class="sh-r"></div></div>
+    <p class="sh-sub">Un proceso simple y transparente. Tú describes lo que quieres, nosotros lo fabricamos.</p>
+    <div class="proc-grid">
+      <div class="proc-card"><div class="proc-n">1</div><div class="proc-t">Cotización</div><div class="proc-d">Nos cuentas tu idea: tipo de joya, material, medidas. Nosotros evaluamos y te enviamos el precio.</div></div>
+      <div class="proc-card"><div class="proc-n">2</div><div class="proc-t">Diseño</div><div class="proc-d">Si el diseño lo requiere, hacemos un boceto digital o de referencia para que apruebes antes de fabricar.</div></div>
+      <div class="proc-card"><div class="proc-n">3</div><div class="proc-t">Fabricación</div><div class="proc-d">Nuestros artesanos fabrican tu pieza con los materiales acordados. Tiempo de entrega: 5–15 días hábiles.</div></div>
+      <div class="proc-card"><div class="proc-n">4</div><div class="proc-t">Entrega</div><div class="proc-d">Recojo en tienda o envío seguro a tu domicilio en Lima. Incluye estuche y certificado de materiales.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPOS -->
+<section class="sec" style="background:var(--k8);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:clamp(36px,5vw,56px) 0">
+  <div class="wrap">
+    <div class="sh" style="--fg:rgba(255,255,255,.8)"><h2 class="sh-t" style="color:rgba(255,255,255,.8)">¿Qué podemos fabricar?</h2><div class="sh-r" style="background:rgba(255,255,255,.1)"></div></div>
+    <div class="tipos-grid">
+      <div class="tipo-card"><div class="tipo-ico">💍</div><div class="tipo-name">Anillos</div><div class="tipo-desc">Compromiso, matrimonio, sello o moda. En oro 18K, 14K o plata 925.</div></div>
+      <div class="tipo-card"><div class="tipo-ico">⛓</div><div class="tipo-name">Cadenas</div><div class="tipo-desc">Todos los tejidos: veneciana, figaro, rolo, box chain. A medida de largo y grosor.</div></div>
+      <div class="tipo-card"><div class="tipo-ico">📿</div><div class="tipo-name">Pulseras</div><div class="tipo-desc">Rígidas, articuladas o de cadena. Con o sin dije personalizado.</div></div>
+      <div class="tipo-card"><div class="tipo-ico">💎</div><div class="tipo-name">Aretes</div><div class="tipo-desc">Argollas, dormilonas, colgantes. Simples o con piedras.</div></div>
+      <div class="tipo-card"><div class="tipo-ico">🔵</div><div class="tipo-name">Dijes</div><div class="tipo-desc">Iniciales, figuras, nombres, símbolos. Completamente personalizados.</div></div>
+      <div class="tipo-card"><div class="tipo-ico">💠</div><div class="tipo-name">Prendedores</div><div class="tipo-desc">Para ropa o accesorios. Diseño libre o basado en referencia.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALES -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sh"><h2 class="sh-t">Materiales disponibles</h2><div class="sh-r"></div></div>
+    <p class="sh-sub">Trabajamos con materiales certificados. El precio final depende del peso de la pieza y el costo del material al momento de fabricación.</p>
+    <div class="mat-grid">
+      <div class="mat-card"><div class="mat-ico" style="background:var(--gb);border:1px solid var(--gl)">🥇</div><div><div class="mat-t">Oro 18K</div><div class="mat-d">El más solicitado. Durabilidad y brillo óptimos para uso diario. Color amarillo, blanco o rosado disponible.</div></div></div>
+      <div class="mat-card"><div class="mat-ico" style="background:var(--gb);border:1px solid var(--gl)">⭐</div><div><div class="mat-t">Oro 14K</div><div class="mat-d">Opción más económica con excelente resistencia. Ideal para piezas de mayor peso.</div></div></div>
+      <div class="mat-card"><div class="mat-ico" style="background:#f0f0f0;border:1px solid var(--bdr)">🥈</div><div><div class="mat-t">Plata 925 (Sterling)</div><div class="mat-d">Plata de ley con 92.5% de pureza. Bello acabado y excelente relación precio-calidad.</div></div></div>
+      <div class="mat-card"><div class="mat-ico" style="background:var(--gb);border:1px solid var(--gl)">✨</div><div><div class="mat-t">Oro 22K / 24K</div><div class="mat-d">Para piezas especiales de alta pureza. Consultar disponibilidad y precio según diseño.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COTIZADOR -->
+<section class="sec" id="cotizador" style="background:var(--k0);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)">
+  <div class="wrap">
+    <div class="sh"><h2 class="sh-t">Cotiza tu joya</h2><div class="sh-r"></div></div>
+    <p class="sh-sub" style="margin-bottom:24px">Cuéntanos tu idea y te enviamos una propuesta. Sin compromiso. Respondemos en 24 horas.</p>
+
+    <div class="quote-card">
+      <div class="form-note">
+        ✦ &nbsp;Puedes también enviarnos una foto de referencia o un boceto por WhatsApp: <a href="https://wa.me/51989971554?text=Hola%2C%20quiero%20cotizar%20una%20joya%20personalizada" target="_blank" rel="noopener" style="color:var(--g1);font-weight:600">+51 989 971 554</a>
+      </div>
+
+      <!-- Datos del cliente -->
+      <div class="form-section">
+        <div class="form-section-title">Tus datos</div>
+        <div class="form-grid">
+          <div class="form-field"><label>Nombre completo *</label><input type="text" id="c-nombre" placeholder="Ej: Carlos Pérez"/></div>
+          <div class="form-field"><label>Teléfono / WhatsApp *</label><input type="tel" id="c-tel" placeholder="+51 9XX XXX XXX"/></div>
+          <div class="form-field full"><label>Correo electrónico *</label><input type="email" id="c-email" placeholder="tu@correo.com"/></div>
+        </div>
+      </div>
+
+      <!-- Detalles de la joya -->
+      <div class="form-section">
+        <div class="form-section-title">Detalles de la joya</div>
+        <div class="form-grid">
+          <div class="form-field">
+            <label>Tipo de joya *</label>
+            <select id="c-tipo">
+              <option value="">Selecciona…</option>
+              <option>Anillo</option>
+              <option>Cadena</option>
+              <option>Pulsera</option>
+              <option>Arete</option>
+              <option>Dije</option>
+              <option>Prendedor</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Material preferido *</label>
+            <select id="c-material">
+              <option value="">Selecciona…</option>
+              <option>Oro 18K amarillo</option>
+              <option>Oro 18K blanco</option>
+              <option>Oro 18K rosado</option>
+              <option>Oro 14K</option>
+              <option>Plata 925</option>
+              <option>Oro 22K</option>
+              <option>Oro 24K</option>
+              <option>No lo sé aún</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Presupuesto aproximado</label>
+            <select id="c-presupuesto">
+              <option value="">Sin preferencia</option>
+              <option>Menos de S/ 200</option>
+              <option>S/ 200 – S/ 500</option>
+              <option>S/ 500 – S/ 1,000</option>
+              <option>S/ 1,000 – S/ 2,000</option>
+              <option>Más de S/ 2,000</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>¿Para cuándo lo necesitas?</label>
+            <input type="date" id="c-fecha"/>
+          </div>
+          <div class="form-field full">
+            <label>Descripción de tu idea *</label>
+            <textarea id="c-desc" rows="4" placeholder="Ej: Quiero una cadena veneciana de plata de 45cm, con un dije de letra 'A'. También puede ser una referencia de foto que nos envíes por WhatsApp."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="ferr" id="c-err">Por favor completa todos los campos obligatorios.</div>
+
+      <div class="form-actions">
+        <button class="btn-submit-gold" id="c-submit" onclick="submitCotizacion()">Enviar cotización →</button>
+        <a class="btn-submit-wa" id="wa-cotizar" href="#" onclick="enviarWA(event)">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar por WhatsApp
+        </a>
+      </div>
+
+      <div class="success-banner" id="c-success">
+        <div class="success-banner-ico">✅</div>
+        <div class="success-banner-t">¡Cotización enviada!</div>
+        <div class="success-banner-sub">Recibimos tu solicitud. Te contactaremos en menos de 24 horas con la propuesta y presupuesto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLOGAN -->
+<div class="slogan">
+  <div class="slogan-t">Una joya hecha para ti<br/>es <strong>una inversión que dura</strong>.</div>
+  <div class="slogan-meta">Quilates · San Isidro · Lima, Perú</div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-in">
+    <div class="footer-brand">Quil<span>ates</span></div>
+    <div class="footer-info">Av. Petit Thouars 2809, San Isidro · Lima · +51 989 971 554</div>
+  </div>
+</footer>
+
+<script>
+// EmailJS — mismos valores que en ofertas.html
+const EMAILJS_PUBLIC_KEY  = 'TU_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID  = 'TU_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'TU_TEMPLATE_ID_COTIZACION'; // puedes usar el mismo o crear otro
+const NUM = '51989971554';
+
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+function getFields() {
+  return {
+    nombre:      document.getElementById('c-nombre')?.value.trim(),
+    tel:         document.getElementById('c-tel')?.value.trim(),
+    email:       document.getElementById('c-email')?.value.trim(),
+    tipo:        document.getElementById('c-tipo')?.value,
+    material:    document.getElementById('c-material')?.value,
+    presupuesto: document.getElementById('c-presupuesto')?.value || 'Sin especificar',
+    fecha:       document.getElementById('c-fecha')?.value || 'Sin especificar',
+    desc:        document.getElementById('c-desc')?.value.trim(),
+  };
+}
+
+async function submitCotizacion() {
+  const f = getFields();
+  const err = document.getElementById('c-err');
+  const btn = document.getElementById('c-submit');
+
+  if (!f.nombre || !f.tel || !f.email || !f.tipo || !f.material || !f.desc) {
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Enviando…';
+
+  const fechaHora = new Date().toLocaleString('es-PE', { timeZone: 'America/Lima' });
+
+  const params = {
+    to_email:    'intelligencecorp42@gmail.com',
+    tipo:        'COTIZACIÓN DE FABRICACIÓN',
+    nombre:      f.nombre,
+    tel:         f.tel,
+    email:       f.email,
+    joya_tipo:   f.tipo,
+    material:    f.material,
+    presupuesto: f.presupuesto,
+    fecha_entrega: f.fecha,
+    descripcion: f.desc,
+    fecha:       fechaHora,
+  };
+
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+    showSuccess();
+  } catch(e) {
+    // Fallback: abrir WhatsApp con el resumen
+    const msg = encodeURIComponent(
+      `✨ Cotización de joya personalizada\n\nNombre: ${f.nombre}\nTel: ${f.tel}\nEmail: ${f.email}\nTipo de joya: ${f.tipo}\nMaterial: ${f.material}\nPresupuesto: ${f.presupuesto}\nFecha entrega: ${f.fecha}\n\nDescripción:\n${f.desc}`
+    );
+    window.open(`https://wa.me/${NUM}?text=${msg}`, '_blank');
+    showSuccess();
+  }
+}
+
+function enviarWA(e) {
+  e.preventDefault();
+  const f = getFields();
+  const err = document.getElementById('c-err');
+  if (!f.nombre || !f.tel || !f.tipo || !f.desc) {
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+  const msg = encodeURIComponent(
+    `✨ Cotización de joya personalizada\n\nNombre: ${f.nombre}\nTel: ${f.tel}\nTipo de joya: ${f.tipo}\nMaterial: ${f.material||'Por definir'}\nPresupuesto: ${f.presupuesto}\n\nDescripción:\n${f.desc}`
+  );
+  window.open(`https://wa.me/${NUM}?text=${msg}`, '_blank');
+}
+
+function showSuccess() {
+  document.getElementById('c-success').classList.add('on');
+  document.getElementById('c-submit').textContent = '✓ Enviado';
+  document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
